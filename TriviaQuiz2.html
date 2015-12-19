@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>Trivia Quiz 2.0</title>
+  <style type="text/css">
+  div
+  {
+	position: relative;
+	left: 0px;
+  }
+  .r
+  {
+    position: relative;
+	left: 80px;
+	top: -18px;
+  }
+
+  </style>
+  <script type="text/javaScript">
+    var q1;
+    var allQuestions = [{question: "What is 2+2?", choices: ["2","3","4","5"],correctAnswer: 2},
+	                    {question: "What is 4+4?", choices: ["2","3","4","8"],correctAnswer: 3},
+						{question: "What is the capital of Colorado?", choices: ["Denver", "Fort Collins", "Laramie", "Lakewood"], correctAnswer: 0}];
+	
+	//alert(allQuestions[1].question);
+	var i = 0;
+	var div;
+	var c1, c2, c3, c4;
+	var correctNumber = 0;
+	function page_onload()
+	{
+	 div = document.getElementById("q1");
+	 div.innerHTML = allQuestions[i].question;
+	 
+	 c1 = document.getElementById("c1");
+	 c2 = document.getElementById("c2");
+	 c3 = document.getElementById("c3");
+	 c4 = document.getElementById("c4");
+	 
+	 c1.innerHTML = allQuestions[i].choices[0];
+	 c2.innerHTML = allQuestions[i].choices[1];
+	 c3.innerHTML = allQuestions[i].choices[2];
+	 c4.innerHTML = allQuestions[i].choices[3];
+	 
+	//alert(allQuestions.length);
+	}
+	
+	function button_onclick()
+	{
+	 //var correctNumber = 0;
+	 var radios = document.getElementsByName("rdo");
+	 for (var j = 0; j < radios.length; j++)
+	 {
+	   if (radios[j].checked)
+	   {
+	     if(radios[j].value == allQuestions[i].correctAnswer)
+		 {
+		   correctNumber = correctNumber + 1;
+		 }
+	   }
+	 }
+	 i++;
+	 checkCorrect();
+	 page_onload();
+	}
+	
+	function checkCorrect()
+	{
+	  if (i == allQuestions.length)
+	    alert("You got " + correctNumber + " correct out of " + allQuestions.length);
+	}
+
+  </script>
+</head>
+<body onload="page_onload()">
+  <h1>Trivia Quiz</h1>
+  <form class = "form current" id="f1" name="form1" action="">
+    <div id="q1"></div><br>
+	<div id="c1"></div><input type="radio" class="r" name="rdo" value="0" checked="checked" /><br>
+	<div id="c2"></div><input type="radio" class="r" name="rdo" value="1"/><br>
+	<div id="c3"></div><input type="radio" class="r" name="rdo" value="2"/><br>
+	<div id="c4"></div><input type="radio" class="r" name="rdo" value="3"/><br>
+    <input type="button" onclick="button_onclick()" value="Next Question" />
+  </form>
+</body>
+</html>
