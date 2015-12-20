@@ -2,8 +2,33 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <title>Trivia Quiz 2.0</title>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width = device-width, initial-scale = 1" />
+<title>Trivia Quiz 2.0</title>
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+<link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
   <style type="text/css">
+  body 
+  {
+    background-color: lightblue;
+  }
+  #websiteTitle
+  {
+    font-size: 3em;
+	text-align: center;
+    vertical-align: middle;
+    font-family: 'Pacifico', cursive;
+    padding-left: 15px;
+    color: #191970;
+  }
+  .jumbotron
+  {
+    left: 0px;
+	position:relative;
+	background-color:#2E2D88;
+	color: white;
+  }
   div
   {
 	position: relative;
@@ -74,14 +99,20 @@
   </script>
 </head>
 <body onload="page_onload()">
-  <h1>Trivia Quiz</h1>
+  <h1 id="websiteTitle">Trivia Quiz</h1>
+<div class="container">
+<div class="jumbotron">
   <form class = "form current" id="f1" name="form1" action="">
     <div id="q1"></div><br>
 	<div id="c1"></div><input type="radio" class="r" name="rdo" value="0" checked="checked" /><br>
 	<div id="c2"></div><input type="radio" class="r" name="rdo" value="1"/><br>
 	<div id="c3"></div><input type="radio" class="r" name="rdo" value="2"/><br>
 	<div id="c4"></div><input type="radio" class="r" name="rdo" value="3"/><br>
-    <input type="button" onclick="button_onclick()" value="Next Question" />
+    <input type="button" onclick="button_onclick()" value="Next Question" class="btn btn-danger" />
   </form>
+</div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </body>
 </html>
