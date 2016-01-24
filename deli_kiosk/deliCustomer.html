@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+<!-- Form to test input to deli MySQL database. -->
+<html>
+   <head>
+      <meta charset = "utf-8">
+      <title>Test Deli Database Connection</title>
+   </head>
+   <body>
+      <h1>Test Deli Input</h1>
+      <form method = "post" action = "deliBehindCounter.php">
+         <p><label>Name:</label> <input type = "text" name = "name"></p>
+		 <p>Choose a Product: 
+            <select name = "product">                   
+               <option>Ham</option>                     
+               <option>Turkey</option>                  
+               <option>Roast Beef</option>               
+               <option>American Cheese</option>      
+               <option>Swiss Cheese</option>			   
+            </select></p>
+			<p>Choose a Brand: 
+            <select name = "brand">                   
+               <option>Boars Head</option>                     
+               <option>Foster Farms</option>                  
+               <option>Dietz & Watson</option>               
+               <option>Finlandia</option>      			   
+            </select></p>
+			<p><label>Amount:</label><input type="number" name="quantity" min="1" max="10" step="0.25"></p>
+         <p><input type = "submit" value = "Place Order"></p>
+      </form>
+   </body>
+</html>
