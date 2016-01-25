@@ -22,61 +22,51 @@
       </style>
    </head>
    <body>
-      <?php
-         $name = $_POST["name"];
-		 $foodType = $_POST["product"];
-		 $brand = $_POST["brand"];
-		 $amount = $_POST["quantity"];
+     <?php
+       $name = $_POST["name"];
+       $foodType = $_POST["product"];
+       $brand = $_POST["brand"];
+       $amount = $_POST["quantity"];	 
+	 
+       $servername = "localhost";
+       $username = "root";
+       $password = "";
+       $dbname = "deli";
 
-         // build INSERT query
-         $query = "INSERT INTO delicounter " .
-                  "( name, food_type, brand, amount) " .
-                  "VALUES ( '$name', '$foodType', '$brand', '$amount')";
-				  
-		// build SELECT query
-         $query2 = "SELECT * FROM delicounter";
-                  
+       // Create connection
+       $conn = new mysqli($servername, $username, $password, $dbname);
 
-         // Connect to MySQL
-         if ( !( $database = mysql_connect( "localhost",
-            "root", "" ) ) )                      
-            die( "Could not connect to database </body></html>" );
-   
-         // open deli database
-         if ( !mysql_select_db( "deli", $database ) )
-            die( "Could not open captain database </body></html>" );
+	   // Check connection
+       if ($conn->connect_error) 
+	   {
+		  die("Connection failed: " . $conn->connect_error);
+       } 
 
-         //insert user input in to delicounter table
-         if ( !( $result = mysql_query( $query, $database ) ) ) 
-         {
-            print( "<p>Could not execute INSERT query!</p>" );
-            die( mysql_error() . "</body></html>" );
-         } 
-		 
-		 //query the delicounter table with SELECT, $tDisplay used to build HTML table for user view
-		 if ( !( $tDisplay = mysql_query( $query2, $database ) ) ) 
-         {
-            print( "<p>Could not execute SELECT query!</p>" );
-            die( mysql_error() . "</body></html>" );
-         } // end if
+       // build INSERT query
+       $query = "INSERT INTO delicounter " . "( name, food_type, brand, amount) " . "VALUES ( '$name', '$foodType', '$brand', '$amount')";
+       $result = $conn->query($query);
 
-         mysql_close( $database );
-      ?>
-      <table>
-         <?php
-            // fetch each record in result set
-            while ( $row = mysql_fetch_row( $tDisplay ) )
-            {
-               // build table to display results
-               print( "<tr>" );
+	   //build SELECT query
+	   $query2 = "SELECT * FROM delicounter";
+       $result2 = $conn->query($query2);
 
-               foreach ( $row as $value ) 
-                  print( "<td>$value</td>" );
-
-               print( "</tr>" );
-            } 
-         ?>
-      </table>
+       $conn->close();
+     ?>
+	 <table>
+	 <?php	   
+	   echo "DELI ORDERS";
+       echo "<tr ><td>NAME</td><td>FOOD TYPE</td><td>BRAND</td><td>AMOUNT</td></tr>";
+       while ($row = mysqli_fetch_array($result2)) 
+	   {
+		   echo "<tr>";
+           echo "<td>". $row["name"] . "</td>";
+           echo "<td>". $row["food_type"] . "</td>";
+		   echo "<td>". $row["brand"] . "</td>";
+		   echo "<td>". $row["amount"] . "</td>";
+           echo "</tr>";
+       }
+	 ?>
+	 </table><br>
       <form>
 		<input type = "button" name = "testJS" value = "BACK" onclick="btnOnClk()">
       </form>
